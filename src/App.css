@@ -6,6 +6,24 @@
   height: 40vmin;
   pointer-events: none;
 }
+.footer{
+  width: 100%;
+  margin-top: 20px;
+  /* position: absolute; */
+  bottom: 0;
+}
+
+#login .container #login-row #login-column #login-box {
+  max-width: 600px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  /* margin-top: -85px; */
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
