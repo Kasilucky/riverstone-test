@@ -12,7 +12,9 @@ const Admin = (props) => {
     fetchUsers()
       .then((res) => {
         let allUsers = res.data.listUsers.items;
-        setUsers(allUsers);
+        setUsers(allUsers.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+        ));
         setLoading(false);
       })
       .catch((err) => {

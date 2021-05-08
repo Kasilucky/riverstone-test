@@ -1,13 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Header = (props) => {
-  let user = localStorage.getItem("user");
+  const user = localStorage.getItem("user");
+  const history = useHistory();
+
   const onLogout = (e) => {
     e.preventDefault();
     localStorage.clear();
-    window.location.replace("/");
+    history.push("/");
   };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link to="/" className="navbar-brand">

@@ -4,8 +4,11 @@ import { fetchUserByEmail } from "../api/api";
 import Loader from "./global/Loader";
 import CryptoAES from 'crypto-js/aes';
 import CryptoENC from 'crypto-js/enc-utf8';
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
+  const history = useHistory();
+
   const [user, setUser] = React.useState({
     email: "",
     password: "",
@@ -34,7 +37,8 @@ const Login = (props) => {
         } else {
           if (decryptedPassword == user.password && isActive) {
             localStorage.setItem("user", JSON.stringify(data[0]));
-            window.location.replace("/welcome");
+            // window.location.replace("/welcome");
+            history.push("/welcome");
             setLoading(false);
           } else if (decryptedPassword != user.password) {
             alert("Entered Incorrect Password Please Try again.");
@@ -60,7 +64,8 @@ const Login = (props) => {
       user.email === "riverstone@gmail.com" &&
       user.password === "Admin@123"
     ) {
-      window.location.replace("/admin");
+      // window.location.replace("/admin");
+      history.push("/admin");
       localStorage.setItem("user", JSON.stringify(user));
       onClear();
       setLoading(true);

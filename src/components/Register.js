@@ -4,8 +4,10 @@ import { create_User , fetchUserByEmail} from "../api/api";
 import Loader from "./global/Loader";
 import CryptoAES from 'crypto-js/aes';
 import CryptoENC from 'crypto-js/enc-utf8';
+import { useHistory } from "react-router-dom";
 
 const Register = (props) => {
+  const history = useHistory();
   const [user, setUser] = React.useState({
     name: "",
     email: "",
@@ -76,7 +78,8 @@ const Register = (props) => {
             .then((res) => {
               let data = res.data.createUser;
               alert("Your Registration was successfully completed, Thank you.");
-              window.location.replace("/login");
+              // window.location.replace("/login");
+              history.push("/login");
               setLoading(false);
               onClear();
             })
