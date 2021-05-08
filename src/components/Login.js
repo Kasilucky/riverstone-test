@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { fetchUserByEmail } from "../api/api";
 import Loader from "./global/Loader";
+import CryptoAES from 'crypto-js/aes';
+import CryptoENC from 'crypto-js/enc-utf8';
 
 const Login = (props) => {
   const [user, setUser] = React.useState({
     email: "",
     password: "",
   });
+
   const [loading, setLoading] = React.useState(false);
 
   const onChange = (e) => {
@@ -22,17 +25,18 @@ const Login = (props) => {
     fetchUserByEmail(email)
       .then((res) => {
         let data = res.data.listUsers.items;
-        let password = data.length === 0 ? "" : data[0].password;
+        let password = data.length === 0 ? "" : CryptoAES.decrypt(data[0].password, '1234');
+        let decryptedPassword = password.toString(CryptoENC);
         let isActive = data.length == 0 ? false : data[0].isActive;
         if (data.length === 0) {
           alert("No user found.");
           setLoading(false);
         } else {
-          if (password === user.password && isActive) {
+          if (decryptedPassword == user.password && isActive) {
             localStorage.setItem("user", JSON.stringify(data[0]));
             window.location.replace("/welcome");
             setLoading(false);
-          } else if (password != user.password) {
+          } else if (decryptedPassword != user.password) {
             alert("Entered Incorrect Password Please Try again.");
             setLoading(false);
           } else {
@@ -56,7 +60,7 @@ const Login = (props) => {
       user.email === "riverstone@gmail.com" &&
       user.password === "Admin@123"
     ) {
-      window.location.href = "/admin";
+      window.location.replace("/admin");
       localStorage.setItem("user", JSON.stringify(user));
       onClear();
       setLoading(true);

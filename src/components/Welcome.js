@@ -3,8 +3,8 @@ import React from "react";
 const Welcome = (props) => {
   return (
     <div className="container-fluid">
-      <div class="col-lg-12 col-md-12 mt-3">
-        <div class="container">
+      <div className="col-lg-12 col-md-12 mt-3">
+        <div className="container">
           <iframe
             src="https://www.riverstonetech.com/"
             width="100%"

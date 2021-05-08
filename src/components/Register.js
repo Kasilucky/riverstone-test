@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { create_User , fetchUserByEmail} from "../api/api";
-import AES from "crypto-js/aes";
 import Loader from "./global/Loader";
+import CryptoAES from 'crypto-js/aes';
+import CryptoENC from 'crypto-js/enc-utf8';
 
 const Register = (props) => {
   const [user, setUser] = React.useState({
@@ -12,10 +13,12 @@ const Register = (props) => {
     password: "",
     cnfPassword: "",
   });
+
   const [touched, setTouched] = React.useState({
     password: false,
     cnfPassword: false,
   });
+
   const [loading, setLoading] = React.useState(false);
 
   const onChange = (e) => {
@@ -56,15 +59,15 @@ const Register = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    let encryptedPassword = CryptoAES.encrypt(`${user.password}`, '1234').toString();
     let obj = {
       id: null,
       name: user.name,
       email: user.email.toLocaleLowerCase(),
       phone: user.phone,
       isActive: false,
-      password: user.password,
+      password: encryptedPassword,
     };
-
     fetchUserByEmail(obj.email)
       .then((res) => {
         let data = res.data.listUsers.items;
