@@ -67,7 +67,7 @@ const Admin = (props) => {
           <tbody>
             {loading ? (
               <tr>
-                <th colSpan="5">No Users Found.</th>
+                <th colSpan="5">Loading...</th>
               </tr>
             ) : users.length === 0 ? (
               <tr>
