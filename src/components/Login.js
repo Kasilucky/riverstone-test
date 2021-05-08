@@ -93,7 +93,7 @@ const Login = (props) => {
         >
           <div id="login-column" className="col-md-6">
             <div id="login-box" className="col-md-12">
-              <form id="login-form" className="form">
+              <form id="login-form" className="form" onSubmit={onSubmit}>
                 <h3 className="text-center text-info">Sign In</h3>
                 <div className="form-group">
                   <div className="form-lable text-left">
@@ -138,7 +138,6 @@ const Login = (props) => {
                     type="submit"
                     name="submit"
                     className="btn btn-info btn-md"
-                    onClick={onSubmit}
                   >
                     Submit
                   </button>
