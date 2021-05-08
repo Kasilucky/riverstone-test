@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { fetchUserByEmail } from "../api/api";
+import Loader from "./global/Loader";
 
 const Login = (props) => {
   const [user, setUser] = React.useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = React.useState(false);
 
   const onChange = (e) => {
     setUser({
@@ -14,21 +17,65 @@ const Login = (props) => {
     });
   };
 
+  const getUserByEmail = (email) => {
+    setLoading(true);
+    fetchUserByEmail(email)
+      .then((res) => {
+        let data = res.data.listUsers.items;
+        let password = data.length === 0 ? "" : data[0].password;
+        let isActive = data.length == 0 ? false : data[0].isActive;
+        if (data.length === 0) {
+          alert("No user found.");
+          setLoading(false);
+        } else {
+          if (password === user.password && isActive) {
+            localStorage.setItem("user", JSON.stringify(data[0]));
+            window.location.replace("/welcome");
+            setLoading(false);
+          } else if (password != user.password) {
+            alert("Entered Incorrect Password Please Try again.");
+            setLoading(false);
+          } else {
+            setLoading(false);
+            alert(
+              "Sorry! Your not activated at by Admin please contact info@riverstonetech.com"
+            );
+          }
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log("getUserByEmail Err:::", err);
+      });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("user",JSON.stringify(user))
+    setLoading(true);
     if (
       user.email === "riverstone@gmail.com" &&
       user.password === "Admin@123"
     ) {
       window.location.href = "/admin";
+      localStorage.setItem("user", JSON.stringify(user));
+      onClear();
+      setLoading(true);
     } else {
-      console.log(user);
+      getUserByEmail(user.email);
     }
+  };
+
+  const onClear = () => {
+    setUser({
+      ...user,
+      email: "",
+      password: "",
+    });
   };
 
   return (
     <div id="login">
+      {loading && <Loader />}
       <h3 className="text-center text-white pt-5"></h3>
       <div className="container">
         <div

@@ -28,9 +28,11 @@ const Header = (props) => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Link to="/" className="nav-link">
-              Home <span className="sr-only">(current)</span>
-            </Link>
+            {user && (
+              <Link to="/welcome" className="nav-link">
+                Home <span className="sr-only">(current)</span>
+              </Link>
+            )}
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
@@ -39,7 +41,7 @@ const Header = (props) => {
               {JSON.parse(user).email === "riverstone@gmail.com" && (
                 <Link
                   to="/admin"
-                  className="btn btn-outline-success my-2 my-sm-0 mr-sm-2"
+                  className="btn btn-outline-success my-2 my-sm-0 mr-sm-2 mr-md-2"
                   type="submit"
                 >
                   Users
@@ -57,14 +59,14 @@ const Header = (props) => {
             <>
               <Link
                 to="/login"
-                className="btn btn-outline-success my-2 my-sm-0 mr-sm-2"
+                className="btn btn-outline-success my-2 my-sm-0 mr-sm-2 mr-xs-2"
                 type="submit"
               >
                 Sign in
               </Link>
               <Link
                 to="/register"
-                className="btn btn-outline-secondary my-2 my-sm-0"
+                className="btn btn-outline-secondary my-2 my-sm-0 ml-xs-2"
                 type="submit"
               >
                 Sign up

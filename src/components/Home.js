@@ -2,7 +2,7 @@ import React from "react";
 
 const Home = (props) => {
   return (
-    <div className="container-fluid" style={{height:"50vh"}}>
+    <div className="container-fluid" style={{minHeight:"400px"}}>
       <div className="card mt-5">
         <div className="card-body text-justify">
           Riverstone was started in the U.S. in the year 2000 and in India in

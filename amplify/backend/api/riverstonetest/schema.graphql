@@ -1,0 +1,8 @@
+type User @model {
+  id: ID!
+  name: String!
+  email: String!
+  phone: String
+  isActive:Boolean
+  password: String!
+}

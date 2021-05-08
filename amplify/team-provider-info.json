@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-riverstonetest-dev-141428-authRole",
+      "UnauthRoleArn": "arn:aws:iam::941268668878:role/amplify-riverstonetest-dev-141428-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::941268668878:role/amplify-riverstonetest-dev-141428-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-riverstonetest-dev-141428-deployment",
+      "UnauthRoleName": "amplify-riverstonetest-dev-141428-unauthRole",
+      "StackName": "amplify-riverstonetest-dev-141428",
+      "StackId": "arn:aws:cloudformation:us-east-1:941268668878:stack/amplify-riverstonetest-dev-141428/9e4491b0-afd9-11eb-9b7e-0aeefef9077b",
+      "AmplifyAppId": "d1vgyeafwwz5lb"
+    }
+  }
+}
