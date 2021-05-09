@@ -70,7 +70,7 @@ const Login = (props) => {
       onClear();
       setLoading(true);
     } else {
-      getUserByEmail(user.email);
+      getUserByEmail(user.email.toLowerCase());
     }
   };
 
